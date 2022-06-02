@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZonedDateTime;
+import java.time.ZoneId;
 
 
 @Controller
@@ -27,6 +29,7 @@ import java.time.LocalTime;
 public class ControllerClass {
     
     private ItemRepository itemRepository;
+    private ZoneId zoneId = ZoneId.of("Africa/Dar_es_Salaam");
     
     @Autowired
     
@@ -54,8 +57,8 @@ public class ControllerClass {
             items.setExpireStatus(expire);
             items.setItemName(itemName);
             items.setAvailability(availability);
-            items.setDate(LocalDate.now());
-            items.setTime(LocalTime.now());
+            items.setDate(LocalDate.now(zoneId));
+            items.setTime(LocalTime.now(zoneId));
             itemRepository.save(items);
             
         }else{
