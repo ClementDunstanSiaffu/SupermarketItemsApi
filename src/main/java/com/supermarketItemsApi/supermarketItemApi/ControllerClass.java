@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 
 @Controller
 @RequestMapping("/")
@@ -51,12 +54,21 @@ public class ControllerClass {
             items.setExpireStatus(expire);
             items.setItemName(itemName);
             items.setAvailability(availability);
+            items.setDate(LocalDate.now());
+            items.setTime(LocalTime.now());
             itemRepository.save(items);
             
         }else{
-           itemRepository.save(new Items(itemId,expire,itemName,availability));
+           itemRepository.save(new Items(
+                                itemId,
+                                expire,
+                                itemName,
+                                availability,
+                                LocalDate.now(),
+                                LocalTime.now()
+                            ));
         }
-        return "saved";
+        return "SUCCESS";
     }
     
 }

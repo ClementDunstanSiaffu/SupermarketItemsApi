@@ -4,11 +4,14 @@
  */
 package com.supermarketItemsApi.supermarketItemApi;
 
+
 /**
  *
  * @author clement
  */
 import org.springframework.data.annotation.Id;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Items {
     
@@ -17,17 +20,23 @@ public class Items {
     private boolean expire;
     private String itemName;
     private boolean availability;
+    private LocalDate date;
+    private LocalTime time;
     
     public Items(
             int id,
             boolean expire,
             String itemName,
-            boolean availability
+            boolean availability,
+            LocalDate date,
+            LocalTime time
     ){
         this.id = id;
         this.expire = expire;
         this.itemName = itemName;
         this.availability = availability;
+        this.date = date;
+        this.time = time;
 
     }
             
@@ -46,6 +55,14 @@ public class Items {
     public void setAvailability(boolean availability){
         this.availability = availability;
     }
+    
+    public void setDate(LocalDate date){
+        this.date = date;
+    }
+    
+    public void setTime(LocalTime time){
+        this.time = time;
+    }
        
     public boolean getExpireStatus(){
         return this.expire;
@@ -57,5 +74,13 @@ public class Items {
     
     public boolean getAvailability(){
         return this.availability;
+    }
+    
+    public LocalDate getDate(){
+        return this.date;
+    }
+    
+    public LocalTime getTime(){
+        return this.time;
     }
 }
